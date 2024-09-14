@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="meals.css">
+</head>
+
+<body>
+    <section>
+        <div class="header">
+            <i class="fa-solid fa-utensils"></i><span>MEALFINDER</span>
+        </div>
+        <i class="fa-solid fa-bars" id="i" onclick="verify()"></i>
+    </section>
+    <div id="sec">
+        <ul id="select">
+            <button onclick="Delete()" id="btnn">X</button>
+            <li onclick="loadCategory('Beef')">Beef</li>
+            <li onclick="loadCategory('Chicken')">Chicken</li>
+            <li onclick="loadCategory('Dessert')">Dessert</li>
+            <li onclick="loadCategory('Lamb')">Lamb</li>
+            <li onclick="loadCategory('Miscellaneous')">Miscellaneous</li>
+            <li onclick="loadCategory('Pasta')">Pasta</li>
+            <li onclick="loadCategory('Pork')">Pork</li>
+            <li onclick="loadCategory('Seafood')">Seafood</li>
+            <li onclick="loadCategory('Side')">Side</li>
+            <li onclick="loadCategory('Starter')">Starter</li>
+            <li onclick="loadCategory('Vegan')">Vegan</li>
+            <li onclick="loadCategory('Vegetarian')">Vegetarian</li>
+            <li onclick="loadCategory('Breakfast')">Breakfast</li>
+            <li onclick="loadCategory('Goat')">Goat</li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <input type="search" id="input" placeholder="Search recipes here...">
+        <i class="fa-solid fa-magnifying-glass" id="icon" onclick="meal()"></i>
+        <h1>What are your favorite cuisines?</h1>
+        <p>PERSONALIZE YOUR EXPERIENCE</p>
+    </div>
+    <div id="measure">
+        <h3 id="head3"></h3>
+        <p id="paragraph"></p>
+    </div>
+    <div id="input-name"></div>
+    <div id="container">
+        <!-- <h1>CATEGORY:</h1> -->
+    </div>
+    <div id="container1"></div>
+    <div id="container2"></div>
+
+    <script>
+
+        function verify() {
+            const data = document.getElementById('sec');
+            data.style.display = data.style.display === 'none' ? 'block' : 'none';
+        }
+
+
+        // Fetching and displaying categories on page load
+        let fname = async () => {
+            const baseUrl = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+            const response = await fetch(baseUrl);
+            const data = await response.json();
+            data.categories.forEach(category => {
+                const divv = document.createElement('div');
+                divv.className = 'div';
+
+                const div2 = document.createElement('div');
+                div2.className = 'div1';
+
+                const title = document.createElement('h4');
+                title.textContent = category.strCategory;
+
+                const img = document.createElement('img');
+                img.src = category.strCategoryThumb;
+                img.alt = category.strCategory;
+                img.setAttribute('data-clickid', `${category.strCategory}`);
+                img.id = 'categories';
+                divv.appendChild(title);
+                divv.appendChild(img);
+                container.appendChild(divv);
+
+                const measure = document.getElementById('measure');
+                const head3 = document.getElementById('head3');
+                const paragraph = document.getElementById('paragraph');
+                head3.innerHTML = category.strCategory;
+                paragraph.innerHTML = category.strCategoryDescription;
+                head3.style.display = 'none';
+                paragraph.style.display = 'none';
+                // measure.style.display='none';
+
+
+            });
+
+            const vcreate = document.querySelectorAll('#categories');
+            vcreate.forEach(element => {
+                element.addEventListener('click', async function () {
+                    const category1 = this.getAttribute('data-clickid');
+                    const url1 = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category1}`;
+                    const res = await fetch(url1);
+                    const data1 = await res.json();
+
+                    let createhtml = '';
+                    data1.meals.forEach(meal => {
+                        createhtml += `
+                       
+                        <div id='con'>
+                            <img class='img2' width=80% alt="${meal.strMeal}" data-clickid="${meal.strMeal}" src="${meal.strMealThumb}" id='img22'>
+                            <h5>${meal.strMeal}</h5>
+                           
+                        </div>
+                            `;
+                    });
+
+                    const container1 = document.getElementById('container1');
+                    container1.innerHTML = createhtml;
+                    container.style.display = 'none';
+                    head3.style.display = 'block';
+                    paragraph.style.display = 'block';
+
+
+
+                    const vcreat2 = document.querySelectorAll('#img22')
+                    vcreat2.forEach(element12 => {
+                        element12.addEventListener('click', async function (event) {
+                            const category22 = this.getAttribute('data-clickid');
+                            const Res22 = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${category22}`);
+                            const meal2 = await Res22.json();
+                            let meallls = '';
+                            meal2.meals.forEach(meal => {
+                                meallls += `
+                                <h1 style='border-bottom:4px solid orange; width:50px;'>MEALS</h1>
+                                <div class=color>
+                                <i class="fa-solid fa-house" style='font-size:30px'></i>
+                                <i class="fa-solid fa-forward" style='font-size:30px'></i>
+                                <span style=font-size:30px;'>BAINGAN BHARTA</SPAN>
+                                </div>
+                                <div class='div11'>
+                                    
+                                    <div class='div2'>
+                                        <div class='meals'>
+                                        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" data-clickid="${meal.strMeal}" id='imgg' >
+                                        </div>
+                                        <div class='meals1'>
+                                        <span class='span'>BAINGAN BHARTA</span>
+                                        <p class='para'>Category:${meal.strMeal}</p>
+                                        <p class='para'><a href='${meal.strYoutube}'>${meal.strYoutube}</a></p>
+                                        <p class='para'><strong>Area:</strong>${meal.strArea}</p>
+                                        <p class='para'><strong>Tags:</strong>${meal.strtags}</p>
+                                        <ol id='ul'><br>
+                                            <h3>Ingradients:</h3><br> 
+                                       ${incre1(meal)}
+                                       </ol>
+                                        </div>
+                                        </div>
+                                        <h3>Measure:</h3>
+                                        <ul style='list-style:none' class='ul'>
+                                            ${incre(meal)}
+                                            </ul>
+                                    <p class='para'><strong>Instructions:</strong>${meal.strInstructions}</p>
+
+                                </div>`;
+                            });
+                            container2.innerHTML = meallls;
+                            container1.style.display = 'none';
+                            head3.style.display = 'none';
+                            paragraph.style.display = 'none';
+                        });
+                    });
+
+                    function incre(meal) {
+                        let ingredients = '';
+                        for (i = 1; i <= 20; i++) {
+                            const ingredient = meal[`strIngredient${i}`]
+                            const measure = meal[`strMeasure${i}`]
+                            if (ingredient && ingredient !== '') {
+                                ingredients += `<li ><i class="fa-solid fa-spoon" style='color:orange;'></i>${measure}</li>`;
+                            }
+
+                        }
+                        return ingredients;
+                    }
+                    incre();
+
+
+                    function incre1(meal) {
+                        let measure1 = '';
+                        for (i = 1; i <= 20; i++) {
+                            const ingredient = meal[`strIngredient${i}`]
+                            const measure = meal[`strMeasure${i}`]
+
+                            if (measure && measure !== '') {
+                                measure1 += `<li class='list'> ${ingredient}</li>`;
+
+                            }
+                        }
+                        return measure1;
+                    }
+                    incre();
+
+                });
+            });
+        }
+        fname();
+
+        const button = document.getElementById('i');
+        const header1 = document.getElementById('select');
+        function verify() {
+            button.style.display = 'none';
+            select.style.display = 'block';
+        }
+
+
+        function Delete() {
+            header1.style.display = 'none';
+            button.style.display = 'block';
+        }
+
+        // Search functionality
+        const input1 = document.getElementById('input');
+        const icon = document.getElementById('icon');
+        const container1 = document.getElementById('container1');
+        icon.addEventListener('click', async function () {
+            const result = input1.value;
+            const searchUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${result}`;
+            const res = await fetch(searchUrl);
+            const data = await res.json();
+            let output = '';
+
+            container.style.display = 'none';
+            // Check if meals were found
+
+            data.meals.forEach(meal => {
+                output += `
+                    <div class='meal'>
+                    <h5>${meal.strMeal}</h5>
+                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class='image'>
+                    </div>`;
+            });
+            container1.innerHTML = output;
+            input1.value = ''; // Clear the search input
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

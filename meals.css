@@ -1,0 +1,199 @@
+section{
+    display: flex;
+    justify-content: space-between;
+    background-color: orangered;
+    color: white;
+    padding-left: 180px;
+    padding-right: 180px;
+    font-size: 20px;
+    
+}
+li{
+    list-style: none;
+}
+.body{
+    background-image: url(./RPOJECT.jpeg);
+    padding-left: 600px;
+    padding-top: 50px;
+    height:200px;
+   background-position-y: 500px;
+   color: white;
+   font-size: 10px;
+}
+.body i{
+    background-color: orangered;
+    font-size: 20px;
+    border-radius: 50%;
+   padding: 5px 5px 5px 5px;
+   border: 1px solid white;    
+   margin-left: 10px;
+}
+input{
+    font-size: 20px;
+    border-radius: 10px;
+    border:none ;
+}
+#select{
+    display:none ;
+}
+#container{
+    display: grid;
+  padding: 80px;
+    grid-template-columns: auto auto auto auto auto;
+}
+.div h4{ 
+  background-color: orangered;
+  color: white;
+ border-radius: 2px;
+ padding-left: 20px;
+ margin-left: 160px;
+ margin-right: 10px;
+   
+}
+.div{
+   margin: 10px;
+   /* border: 1px solid rgb(187, 181, 181); */
+   border-radius: 10px;
+   box-shadow: 2px 2px 2px 2px rgb(200, 200, 202);
+}
+.div img{
+    width: 70%;
+    background-color: white;
+    
+}
+#btnn{
+    margin-left: -30px;
+margin-top: -10px;
+padding: 3px 8px;
+background-color: orangered;
+color: white;
+border-radius: 20px;
+border: none;
+
+}
+
+/* #select{
+    font-size: 25px;
+    border: none;
+} */
+option{
+    font-size: 10px;
+    border-bottom: 1px solid rgb(108, 105, 105);
+}
+#header1{
+    display: none;
+}
+
+/* second page */
+
+#container1{
+    display: grid;
+    padding: 80px;
+grid-template-columns: auto auto auto auto;
+}
+
+ #container1 .img2{
+    width:50%;
+    border-radius: 10px; 
+ /* border: 1px solid black;  */
+box-shadow: 2px 2px 2px 2px rgb(224, 220, 220);
+margin: 30px;
+}
+#con{
+    margin: 10px;
+    /* border: 1px solid rgb(128, 126, 126); */
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(224, 220, 220);
+}
+#con h5{
+    background-color: orangered;
+    color: white;
+    border-radius: 2px;
+    padding-left: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+  
+
+}
+#con:hover{
+    width: 100%;
+    font-size: 30px;
+}
+.color {
+    background-color: rgb(255, 115, 0);
+    color: white;
+    padding-left: 50px;
+}
+.color i{
+ padding-left: 20px;
+}
+#measure{
+    margin-top: 20px;
+    border: 2px solid rgb(255, 0, 102);
+}
+#head3{
+    color: orangered;
+}
+ #imgg{
+    width: 50%;
+    border-radius: 30px;
+    padding: 30px;
+   
+}
+.meals1{
+    margin-top: 20px;
+    margin-right: 200px;
+}
+.div2{
+    margin: 50px;
+   display: flex;
+   /* margin-top: 20px; */
+ box-shadow: 3px 1px 3px 3px rgb(212, 207, 207);
+}
+#ul{
+list-style-type: decimal;
+background-color: orange;
+color: white;
+display: grid;
+grid-template-columns: auto auto auto;
+padding-left: 30px;
+
+}
+.span{
+    font-size: 20px;
+    border-bottom: 2px solid orange;
+}
+.ul{
+    
+    margin: 40px;
+    display: grid;
+    grid-template-columns: auto auto;
+    box-shadow: 1px 1px 5px 1px rgb(212, 207, 207);
+}
+.para{
+    justify-content: first baseline;
+}
+.meal{
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin: 10px;
+    box-shadow: 1px 1px 5px 1px rgb(212, 207, 207);
+}
+.meal h5{
+    background-color: orangered;
+    color: white;
+    border-radius: 10px;
+    margin-right: 50px;
+    padding-left: 60px;
+}
+.image{
+    width: 73%;
+}
+
+#select{
+    width: 30%;
+}
+.list{
+    list-style:number;
+    margin-left: 20px;   
+}
